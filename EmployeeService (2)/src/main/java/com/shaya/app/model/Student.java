@@ -20,6 +20,17 @@ public class Student {
     @OneToMany(cascade = CascadeType.ALL,targetEntity = Telephone.class,mappedBy = "student")
     List<Telephone> telephones;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    Login login;
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
+    }
+
     public List<Telephone> getTelephones() {
         return telephones;
     }
