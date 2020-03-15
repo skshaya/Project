@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String no;
     String street;

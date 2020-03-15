@@ -9,14 +9,14 @@
 		<version>2.2.4.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ishan</groupId>
+	<groupId>com.shaya</groupId>
 	<artifactId>DatabaseSpringDay1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>DatabaseSpringDay1</name>
 	<description> Spring Boot Database</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.8.0_241</java.version>
 	</properties>
 
 	<dependencies>
@@ -47,7 +47,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-			<version>5.1.44</version>
+			<version>8.0.18</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -6,6 +6,10 @@ import com.shaya.app.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class StudentServiceImpl implements StudentService{
 
@@ -17,6 +21,28 @@ public class StudentServiceImpl implements StudentService{
         for (Telephone telephone: student.getTelephones()){
             telephone.setStudent(student);
         }
+        return studentRepository.save(student);
+    }
+
+    public List<Student> getAllStudent(){
+        List<Student> students = new ArrayList<>();
+         studentRepository.findAll();
+         students=studentRepository.findAll();
+        return students;
+    }
+
+    public Optional<Student> findById(Integer id) {
+        return studentRepository.findById(id);
+    }
+
+    @Override
+    public Student updateStudent(Integer id, Student student1) {
+        Student student = studentRepository.findById(id).get();
+        student.setFirstname(student1.getFirstname());
+        student.setLastname(student1.getLastname());
+        student.setAddress(student1.getAddress());
+        student.setTelephones(student1.getTelephones());
+        student.setLogin(student1.getLogin());
         return studentRepository.save(student);
     }
 }
