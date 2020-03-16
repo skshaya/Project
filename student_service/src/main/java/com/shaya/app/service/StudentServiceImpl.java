@@ -26,7 +26,6 @@ public class StudentServiceImpl implements StudentService{
 
     public List<Student> getAllStudent(){
         List<Student> students = new ArrayList<>();
-         studentRepository.findAll();
          students=studentRepository.findAll();
         return students;
     }
@@ -40,6 +39,7 @@ public class StudentServiceImpl implements StudentService{
         Student student = studentRepository.findById(id).get();
         student.setFirstname(student1.getFirstname());
         student.setLastname(student1.getLastname());
+        student.setStudentclass(student1.getStudentclass());
         student.setAddress(student1.getAddress());
         student.setTelephones(student1.getTelephones());
         student.setLogin(student1.getLogin());
