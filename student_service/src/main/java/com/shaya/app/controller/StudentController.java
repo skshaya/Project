@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin(origins = "http://localhost:8091")
 @RestController
 @RequestMapping("/services")
 public class StudentController {
@@ -20,6 +19,7 @@ public class StudentController {
         return "hello";
     }
 
+
     @GetMapping("/student")
     public List<Student> getAllStudent(){
         return studentService.getAllStudent();
@@ -31,12 +31,18 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/student/{id}")
-    public Optional<Student> getCustomerById(@PathVariable("id") int id){
+    public Optional<Student> getStudentById(@PathVariable("id") int id){
         return studentService.findById(id);
     }
 
-    @RequestMapping(value = "/student/update/{id}")
-    public Student updateCustomer(@PathVariable("id") int id, @RequestBody Student student){
+    @RequestMapping(value = "/student/update/{id}", method = RequestMethod.PUT)
+    public Student updateStudent(@PathVariable("id") int id, @RequestBody Student student){
         return studentService.updateStudent(id, student);
     }
+
+    @RequestMapping(value = "/student/delete/{id}", method = RequestMethod.GET)
+    public void deleteStudentById(@PathVariable Integer id) {
+        studentService.deleteStudent(id);
+    }
+
 }

@@ -1,0 +1,109 @@
+<div class="card">
+  <div class="card-header" style="text-align:center"><b>Student Details</b></div>
+  <div class="card-body">
+   <form [formGroup]="FromStudent" (ngSubmit)="AddStudent(FromStudent.value)">
+        <div class="row">
+            <input style="display: none;"  type="text"  formControlName="studentid" id="studentid" >
+            <input style="display: none;"  type="text" formControlName="addressid" id="address_id" >
+            <input style="display: none;" type="text"  formControlName="telephonesid" id="telephonesid" >
+            <div class="form-group col-sm-4"> 
+                <label for="company">First Name</label>
+                <input type="text" class="form-control" formControlName="firstname" id="firstname" placeholder="Enter first name" >
+            </div>
+            <div class="form-group col-sm-4"> 
+              <label for="company">Last Name</label>
+              <input type="text" class="form-control" formControlName="lastname" id="lastname" placeholder="Enter last name" >
+          </div>
+          <div class="form-group col-sm-4"> 
+            <label for="company">Student Class</label>
+            <input type="text" class="form-control" formControlName="studentclass" id="studentclass" placeholder="Enter studentclass" >
+        </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-4"> 
+                <label for="company">Address Details</label>
+                <div> 
+                  <label for="company">No</label>
+                  <input type="text" class="form-control" formControlName="addressno" id="addressno" placeholder="Enter Address No" >
+              </div>
+              <div > 
+                <label for="company">Street</label>
+                <input type="text" class="form-control" formControlName="addressstreet" id="addressstreet" placeholder="Enter street " >
+            </div>
+            <div> 
+              <label for="company">Town</label>
+              <input type="text" class="form-control" formControlName="addresstown" id="addresstown" placeholder="Enter Town" >
+          </div>
+
+          <div > 
+            <label for="company">City</label>
+            <input type="text" class="form-control" formControlName="addresscity" id="addresscity" placeholder="Enter City" >
+        </div>   
+            </div>
+
+            <div class="form-group col-sm-2"> 
+              <label for="company">Telephone Details</label>
+              <label for="company">Telephone 1</label>
+              <input type="text" class="form-control" formControlName="telephonesno1" id="telephonesno1" placeholder="Enter telephone" >
+              <label for="company">Telephone 2</label>
+              <input type="text" class="form-control" formControlName="telephonesno2" id="telephonesno2" placeholder="Enter telephone" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-3"> 
+           <button type="submit" class="btn btn-primary" >Add Student</button>
+          </div>
+        </div>
+    </form>
+  </div> 
+  <div class="card-footer">
+    <div class="col-lg-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Student class</th>
+                <th>Address</th>
+                <th>Telephone</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let Student of allStudent |async">
+                <td>{{Student.studentid}}</td>
+                 <td>{{Student.firstname}}</td>
+                <td>{{Student.lastname}}</td>
+                <td>{{Student.studentclass}}</td>
+                <td>{{Student?.address?.no}},
+                  {{Student?.address?.street}},
+                  {{Student?.address?.town}},
+                  {{Student?.address?.city}}
+                </td>
+                <td>
+                  <div  *ngFor="let telephone of Student?.telephones">
+                  
+                    {{telephone?.no}},
+                  </div>
+                  <!-- {{Student?.telephones[0]?.no}} -->
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary mr-1" (click)="StudentEdit(Student.studentid)">Edit</button>
+                  <button type="button" class="btn btn-danger mr-1" (click)="DeleteStudent(Student.studentid)">Delete</button>
+                </td> 
+              </tr> 
+            </tbody>
+          </table>
+
+          <!-- <table *ngFor="let Student of allStudent|async">
+            <tr>
+              <td>{{Student.firstname}}</td> <td>-</td>
+            </tr>
+            <tr *ngFor="let telp of Student.telephones">
+                <td></td> <td> {{ telp }} </td>
+            </tr>   
+          </table> -->
+      </div>
+  </div>
+</div>

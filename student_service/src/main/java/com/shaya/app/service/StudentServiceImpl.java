@@ -45,4 +45,9 @@ public class StudentServiceImpl implements StudentService{
         student.setLogin(student1.getLogin());
         return studentRepository.save(student);
     }
+
+    @Override
+    public void deleteStudent(Integer id) {
+        studentRepository.deleteById(id);
+    }
 }
