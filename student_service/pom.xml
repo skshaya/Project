@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.shaya</groupId>
-	<artifactId>DatabaseSpringDay1</artifactId>
+	<artifactId>student_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DatabaseSpringDay1</name>
+	<name>student_service</name>
 	<description> Spring Boot Database</description>
 
 	<properties>

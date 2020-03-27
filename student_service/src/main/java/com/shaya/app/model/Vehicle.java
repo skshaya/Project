@@ -2,6 +2,7 @@ package com.shaya.app.model;
 
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
+import java.util.List;
 
 @Entity
 @Table(name ="Vehicle")
@@ -11,6 +12,17 @@ public class Vehicle {
     int vehicleid;
     String vehicleno;
     String phone;
+
+    @OneToMany(cascade = CascadeType.ALL,targetEntity = Student.class,mappedBy = "vehicle")
+    List<Student> students;
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
     public int getVehicleid() {
         return vehicleid;

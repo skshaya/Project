@@ -6,6 +6,8 @@ import com.sms.teacher_service.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +24,12 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepository.save(teacher);
     }
 
+    public List<Teacher> getAllTeacher(){
+        List<Teacher> teachers = new ArrayList<>();
+        teachers=teacherRepository.findAll();
+        return teachers;
+    }
+
     @Override
     public Optional<Teacher> findById(Integer id) {
         return teacherRepository.findById(id);
@@ -36,6 +44,11 @@ public class TeacherServiceImpl implements TeacherService {
         teacher1.setLogin(teacher.getLogin());
         teacher1.setTelephones(teacher.getTelephones());
         return teacherRepository.save(teacher1);
+    }
+
+    @Override
+    public void deleteTeacher(Integer id) {
+        teacherRepository.deleteById(id);
     }
 
 }

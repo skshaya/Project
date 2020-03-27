@@ -5,6 +5,7 @@ import com.sms.teacher_service.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,6 +18,11 @@ public class TeacherController {
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public String test(){
         return "Hi, This is my SMS Project";
+    }
+
+    @GetMapping("/teacher")
+    public List<Teacher> getAllTeacher(){
+        return teacherService.getAllTeacher();
     }
 
     @RequestMapping(value = "/teacher/save",method = RequestMethod.POST)
@@ -33,5 +39,11 @@ public class TeacherController {
     public Teacher updateTeacher(@PathVariable("id") int id, @RequestBody Teacher teacher){
         return teacherService.updateTeacher(id, teacher);
     }
+
+    @RequestMapping(value = "/teacher/delete/{id}", method = RequestMethod.GET)
+    public void deleteTeacherById(@PathVariable Integer id) {
+        teacherService.deleteTeacher(id);
+    }
+
 }
 

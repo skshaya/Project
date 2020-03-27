@@ -1,5 +1,4 @@
-package com.shaya.app.model;
-
+package com.sms.vehicle_service.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -18,17 +17,10 @@ public class Student {
     String lastname;
     String studentclass;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    Address address;
-
-    @OneToMany(cascade = CascadeType.ALL,targetEntity = Telephone.class,mappedBy = "student")
-    List<Telephone> telephones;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn
+    @JsonIgnore
     Vehicle vehicle;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    Login login;
 
     public int getStudentid() {
         return studentid;
@@ -62,22 +54,6 @@ public class Student {
         this.studentclass = studentclass;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public List<Telephone> getTelephones() {
-        return telephones;
-    }
-
-    public void setTelephones(List<Telephone> telephones) {
-        this.telephones = telephones;
-    }
-
     public Vehicle getVehicle() {
         return vehicle;
     }
@@ -85,12 +61,5 @@ public class Student {
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
-
-    public Login getLogin() {
-        return login;
-    }
-
-    public void setLogin(Login login) {
-        this.login = login;
-    }
 }
+

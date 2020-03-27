@@ -5,6 +5,7 @@ import com.sms.vehicle_service.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,6 +18,11 @@ public class VehicleController {
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public String test(){
         return "Hi, This is my SMS Project";
+    }
+
+    @GetMapping("/vehicle")
+    public List<Vehicle> getAllVehicle(){
+        return vehicleService.getAllVehicle();
     }
 
     @RequestMapping(value = "/vehicle/save",method = RequestMethod.POST)
@@ -32,6 +38,11 @@ public class VehicleController {
     @RequestMapping(value = "/vehicle/update/{id}")
     public Vehicle updateVehicle(@PathVariable("id") int id, @RequestBody Vehicle vehicle){
         return vehicleService.updateVehicle(id, vehicle);
+    }
+
+    @RequestMapping(value = "/vehicle/delete/{id}", method = RequestMethod.GET)
+    public void deleteVehicleById(@PathVariable Integer id) {
+        vehicleService.deleteVehicle(id);
     }
 }
 
