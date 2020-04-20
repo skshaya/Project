@@ -1,4 +1,4 @@
-package com.sms.teacher_service.model;
+package com.shaya.app.model;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +14,9 @@ public class Teacher {
     String lastname;
     String qualification;
     String mobile;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    Subject subject;
 
     @OneToMany(cascade = CascadeType.ALL,targetEntity = Student.class,mappedBy = "teacher")
     List<Student> students;
@@ -59,6 +62,14 @@ public class Teacher {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public List<Student> getStudents() {

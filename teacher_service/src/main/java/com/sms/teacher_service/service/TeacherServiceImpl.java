@@ -1,7 +1,7 @@
 package com.sms.teacher_service.service;
 
+import com.sms.teacher_service.model.Student;
 import com.sms.teacher_service.model.Teacher;
-import com.sms.teacher_service.model.Telephone;
 import com.sms.teacher_service.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,8 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Teacher saveTeacher(Teacher teacher) {
-        for (Telephone telephone: teacher.getTelephones()){
-            telephone.setTeacher(teacher);
+        for (Student student: teacher.getStudents()){
+            student.setTeacher(teacher);
         }
         return teacherRepository.save(teacher);
     }
@@ -40,9 +40,9 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher teacher1 = teacherRepository.findById((id)).get();
         teacher1.setFirstname(teacher.getFirstname());
         teacher1.setLastname(teacher.getLastname());
-        teacher1.setAddress(teacher.getAddress());
         teacher1.setLogin(teacher.getLogin());
-        teacher1.setTelephones(teacher.getTelephones());
+        teacher1.setMobile(teacher.getMobile());
+        teacher1.setStudents(teacher.getStudents());
         return teacherRepository.save(teacher1);
     }
 
